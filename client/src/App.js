@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
+import AppBar from '@material-ui/core/AppBar';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { gql, useLazyQuery, NetworkStatus } from "@apollo/client";
 import Product from './Product';
@@ -23,7 +24,7 @@ const App = () => {
   const [getProducts, { loading, data, refetch, networkStatus }] = useLazyQuery(GET_PRODUCTS, {
     fetchPolicy: "network-only"
   });
-  
+
   const [ products, setProducts ] = useState([]);
   const [ value, setValue ] = useState(0);
 
@@ -44,13 +45,16 @@ const App = () => {
 
   return (
     <div className="App" style={{ padding: "10vh" }}>
+      <AppBar>
       <BottomNavigation value={value} onChange={(_event, newValue) => {setValue(newValue);}} showLabels >
         <BottomNavigationAction label="Beanies" onClick={() => getProductsFromApi('beanies')} />
         <BottomNavigationAction label="Gloves" onClick={() => getProductsFromApi('gloves')} />
         <BottomNavigationAction label="Facemasks" onClick={() => getProductsFromApi('facemasks')} />
+        {loading ? <CircularProgress /> : null}
       </BottomNavigation>
+      </AppBar>
       <div style={{ width: "80%", margin: "auto", marginTop: "5vh"}}>
-        {products.length > 1 ? <Product products={products} /> : !loading ? <span>select a category...</span> : <div style={{ margin: "auto", width: "300px" }}><CircularProgress size={100}/></div> }
+        {products.length > 1 ? <Product products={products} /> : !loading ? <span>select a category...</span> : null }
       </div>
     </div>
   );
