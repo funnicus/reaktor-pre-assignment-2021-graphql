@@ -48,4 +48,4 @@ app.use(express_1.default.json());
 const reactApp = express_1.default.static('./client/build');
 app.use(reactApp);
 console.log(server.graphqlPath);
-app.listen({ port: process.env.port || PORT }, () => console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`));
+app.listen({ port: process.env.PORT || PORT }, () => console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`));

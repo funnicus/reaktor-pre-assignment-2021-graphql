@@ -44,6 +44,6 @@ app.use(reactApp);
 
 console.log(server.graphqlPath);
 
-app.listen({ port: process.env.port || PORT }, () =>
+app.listen({ port: process.env.PORT || PORT }, () =>
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
 );
