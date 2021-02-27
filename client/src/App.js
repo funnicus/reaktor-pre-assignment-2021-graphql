@@ -3,7 +3,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import AppBar from '@material-ui/core/AppBar';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import { gql, useLazyQuery, NetworkStatus } from "@apollo/client";
+import { gql, useLazyQuery } from "@apollo/client";
 import Product from './Product';
 import './App.css'
 
@@ -21,7 +21,7 @@ const GET_PRODUCTS = gql`
 
 const App = () => {
 
-  const [getProducts, { loading, data, refetch, networkStatus }] = useLazyQuery(GET_PRODUCTS, {
+  const [getProducts, { loading, data }] = useLazyQuery(GET_PRODUCTS, {
     fetchPolicy: "network-only"
   });
 
@@ -36,12 +36,8 @@ const App = () => {
       setProducts([]);
       getProducts({ 
         variables: { name: product },
-        pollInterval: 5000,
-        notifyOnNetworkStatusChange: true,
       });
   }
-
-  if (networkStatus === NetworkStatus.refetch) console.log("refetch??");
 
   return (
     <div className="App" style={{ padding: "10vh" }}>
