@@ -1,0 +1,33 @@
+.App nav {
+    margin: 20px;
+}
+
+.App nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.App nav button {
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: white;
+    background-color: rgb(18, 136, 18, 0.8);
+}
+
+.App nav button:hover {
+    background-color: rgb(18, 136, 18);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead tr {
+    border-bottom: 4px solid rgb(0, 128, 0);
+}
