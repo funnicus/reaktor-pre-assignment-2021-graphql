@@ -147,7 +147,7 @@ export default function Product({ products }) {
   const [ rows, setRows ] = useState([]);
 
   useEffect(() => {
-    function createData(id, name, manufacturer, colors, avail) {
+    function createData(id, name, manufacturer, colors, price, avail) {
         let availability;
         switch(avail){
             case "INSTOCK":
@@ -163,14 +163,14 @@ export default function Product({ products }) {
                 availability = "?"
                 break
         }
-        return { id, name, manufacturer, colors, availability };
+        return { id, name, manufacturer, colors, price, availability };
     }
           
       const r = [];
           
       for (let i = 0; i < products.length; i++) {
         const product = products[i];
-        const data = [ product.name, product.manufacturer, product.color.join(", "), product.awailability ];
+        const data = [ product.name, product.manufacturer, product.color.join(", "), product.price, product.awailability ];
         r.push(createData(i, ...data));
       }
 
@@ -197,6 +197,11 @@ export default function Product({ products }) {
             width: 200,
             label: 'Colors',
             dataKey: 'colors',
+          },
+          {
+            width: 200,
+            label: 'Price',
+            dataKey: 'price',
           },
           {
             width: 200,

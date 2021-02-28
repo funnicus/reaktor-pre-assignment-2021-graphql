@@ -13,6 +13,7 @@ const GET_PRODUCTS = gql`
       name
       manufacturer
       color
+      price
       awailability
       id
     }
