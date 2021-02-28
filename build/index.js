@@ -20,6 +20,12 @@ const getProducts_1 = __importDefault(require("./server/getProducts"));
 const schemas_1 = __importDefault(require("./server/schemas"));
 const app = express_1.default();
 const PORT = 4000;
+const server = new apollo_server_express_1.ApolloServer({ schema: schemas_1.default });
+server.applyMiddleware({ app, path: "/graph" });
+app.use(cors_1.default());
+app.use(express_1.default.json());
+const reactApp = express_1.default.static('./client/build');
+app.use(reactApp);
 //Get all the information for every product category and save them into files...
 const writeDataToFiles = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -45,11 +51,4 @@ setInterval(() => {
 }, 1000 * 60 * 5); //update every 5 minutes
 //run at the start also
 void writeDataToFiles();
-const server = new apollo_server_express_1.ApolloServer({ schema: schemas_1.default });
-server.applyMiddleware({ app, path: "/graph" });
-app.use(cors_1.default());
-app.use(express_1.default.json());
-const reactApp = express_1.default.static('./client/build');
-app.use(reactApp);
-console.log(server.graphqlPath);
 app.listen({ port: process.env.PORT || PORT }, () => console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`));

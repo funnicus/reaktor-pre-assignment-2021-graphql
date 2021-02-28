@@ -9,6 +9,15 @@ import schema from './server/schemas';
 const app = express();
 const PORT = 4000;
 
+const server = new ApolloServer({ schema });
+server.applyMiddleware({ app, path: "/graph" });
+
+app.use(cors());
+app.use(express.json());
+
+const reactApp = express.static('./client/build');
+app.use(reactApp);
+
 //Get all the information for every product category and save them into files...
 const writeDataToFiles = async () => {
     try {
@@ -37,17 +46,6 @@ setInterval(() => {
 
 //run at the start also
 void writeDataToFiles();
-
-const server = new ApolloServer({ schema });
-server.applyMiddleware({ app, path: "/graph" });
-
-app.use(cors());
-app.use(express.json());
-
-const reactApp = express.static('./client/build');
-app.use(reactApp);
-
-console.log(server.graphqlPath);
 
 app.listen({ port: process.env.PORT || PORT }, () =>
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
