@@ -8,7 +8,7 @@ import {
   ApolloClient, ApolloProvider, HttpLink, InMemoryCache
 } from '@apollo/client'
 
-const link = new HttpLink({ uri: "http://localhost:4000/graph"})
+const link = new HttpLink({ uri: "/graph"})
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
