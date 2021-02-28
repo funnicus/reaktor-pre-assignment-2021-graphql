@@ -28,6 +28,10 @@ const writeDataToFiles = () => __awaiter(void 0, void 0, void 0, function* () {
         const gloves = yield getProducts_1.default('gloves');
         const facemasks = yield getProducts_1.default('facemasks');
         console.log("ready!");
+        if (!beanies || !gloves || !facemasks) {
+            console.error("api didn't return some products!");
+            return;
+        }
         fs_1.default.writeFileSync('./data_files/beanies.json', JSON.stringify(beanies));
         fs_1.default.writeFileSync('./data_files/gloves.json', JSON.stringify(gloves));
         fs_1.default.writeFileSync('./data_files/facemasks.json', JSON.stringify(facemasks));
