@@ -18,6 +18,11 @@ const writeDataToFiles = async () => {
         const facemasks = await getProducts('facemasks');
         console.log("ready!");
 
+        if(!beanies || !gloves || !facemasks) {
+            console.error("api didn't return some products!");
+            return;
+        }
+
         fs.writeFileSync('./data_files/beanies.json', JSON.stringify(beanies));
         fs.writeFileSync('./data_files/gloves.json', JSON.stringify(gloves));
         fs.writeFileSync('./data_files/facemasks.json', JSON.stringify(facemasks));

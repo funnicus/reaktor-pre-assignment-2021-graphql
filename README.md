@@ -3,6 +3,11 @@
 My solution for the pre-assignment. This is the _GraphQL_ version.
 Technologies here used are: TypeScript, Express, Node.js on the backend, React with Material UI and react-virtualized on the frontend. Both the front- and the backend use Apollo GraphQL for data query.
 
+The React frontend can be found in the client folder!
+
+The project is deployed on __https://reaktor-pre-assignment-2021-gr.herokuapp.com/__
+It might take a while to load the latest data on the first load of the website!
+
 ## Important files
 
 ### getProducts.ts
@@ -11,10 +16,6 @@ The information is later stored in json files.
 
 ### productInfoList.ts
 Serves the product information for the category requested by the client, reading the information from the json files in data_files folder.
-
-The React frontend can be found in the client folder!
-
-The project is deployed on __https://reaktor-pre-assignment-2021-gr.herokuapp.com/__
 
 ## Instructions
 
